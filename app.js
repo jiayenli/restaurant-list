@@ -2,6 +2,22 @@ const { request } = require('express')
 const express = require('express')
 const app = express()
 const port = 3000
+const mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/restaurant-list', { useNewUrlParser: true ,  useUnifiedTopology: true } )
+//資料庫連線狀態
+const db = mongoose.connection
+// 異常
+db.on('error', () => {
+  console.log('mongodb error!')
+})
+// 連線成功
+db.once('open', () => {
+  console.log('mongodb connected!')
+})
+
+
+
+
 
 // require express-handlebars here
 const exphbs = require('express-handlebars')
