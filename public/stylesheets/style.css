@@ -30,6 +30,13 @@ header {
   margin-top: -60px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
+.edit , .delete {
+  border-radius: 8px;
+}
+
+.edit-btn:hover {
+  text-decoration:none;
+}
 
 .search-bar .search-bar-inner h4 {
   color: #9b4b4b;
@@ -40,6 +47,12 @@ header {
   font-size: 0.8rem;
 }
 
+.list-name {
+  background-color: #9b4b4b;
+  border-radius: 8px;
+  color: white;
+  padding: 5px;
+}
 .btn-major {
   background-color: #9b4b4b;
   color: white;
@@ -77,6 +90,7 @@ header {
   font-size: 3rem;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
 
 @media screen and (max-width: 992px) {
   
