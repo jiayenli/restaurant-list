@@ -1,8 +1,6 @@
 # 餐廳清單
 本次專案利用Mongodb資料庫建立餐廳資料，提供使用者收藏餐廳，查閱與編輯餐廳資料的功能。
 ![image](https://user-images.githubusercontent.com/86180743/125239551-6438d380-e31b-11eb-84ab-3de5ce4e1544.png)
-![image](https://user-images.githubusercontent.com/86180743/125239877-e32e0c00-e31b-11eb-82cb-d754c29ea4f9.png)
-
 
 
 ## 產品功能
@@ -17,6 +15,7 @@
 5、使用者可編輯餐廳資訊
 
 6、使用者可刪除餐廳
+![image](https://user-images.githubusercontent.com/86180743/125239877-e32e0c00-e31b-11eb-82cb-d754c29ea4f9.png)
 
 ## 使用工具
 環境：Visual Studio Code、Node.js
