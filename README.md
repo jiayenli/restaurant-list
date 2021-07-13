@@ -1,6 +1,7 @@
 # 餐廳清單
 本次專案利用Mongodb資料庫建立餐廳資料，提供使用者收藏餐廳，查閱與編輯餐廳資料的功能。
-![image](https://user-images.githubusercontent.com/86180743/125248031-2c835900-e326-11eb-9563-02e615bf763a.png)
+![image](https://user-images.githubusercontent.com/86180743/125489770-435a8092-b9f1-434f-bb6a-2abdaa6876f3.png)
+
 
 
 
