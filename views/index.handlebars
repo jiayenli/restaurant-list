@@ -53,17 +53,17 @@
                 <div>
 
                   <span>
-                  <a class="card-btn" href="./restaurants/{{this._id}}">
-                  <button class="edit btn btn-outline-danger p-1">Detail</button>
-                  </a>
-                  </span>
-
-
-                  <span>
                   <a  class="card-btn" href="./restaurants/{{ this._id }}/edit">
                     <button class="edit btn btn-outline-danger p-1">Edit</button>
                   </a>
                   </span>
+
+                  <span>
+                    <a class="card-btn" href="./restaurants/{{this._id}}">
+                      <button class="edit btn btn-outline-danger p-1">Detail</button>
+                    </a>
+                  </span>
+
                   <span>
                   <form action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline">
                     <button type="submit"class="delete btn btn-outline-danger p-1 ">Delete</button>

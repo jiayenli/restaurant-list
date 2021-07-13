@@ -30,11 +30,11 @@ header {
   margin-top: -60px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
-.edit , .delete {
+.edit, .delete {
   border-radius: 8px;
 }
 
-.card-btn:hover {
+.cardnnodemon-btn:hover {
   text-decoration:none;
 }
 
@@ -75,6 +75,10 @@ header {
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
+}
+
+.card-btn:hover{
+   text-decoration:none;
 }
 
 .restaurant-category {
