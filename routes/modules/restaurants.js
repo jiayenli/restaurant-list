@@ -3,6 +3,14 @@ const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
+
+//新增餐廳
+router.get('/new', (req, res) => {
+  return res.render('new')
+})
+
+
+
 //瀏覽一筆資料
 router.get('/:id', (req, res) => {
   const id = req.params.id
@@ -12,12 +20,7 @@ router.get('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//新增餐廳
-router.get('/new', (req, res) => {
-  return res.render('new')
-})
-
-router.post('/:id', (req, res) => {
+router.post('/', (req, res) => {
   const name = req.body.name
   const category = req.body.category
   const image = req.body.image
@@ -31,6 +34,7 @@ router.post('/:id', (req, res) => {
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
+
 
 //修改資料
 router.get('/:id/edit', (req, res) => {
