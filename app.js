@@ -1,15 +1,14 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/restaurant-list', { useNewUrlParser: true, useUnifiedTopology: true })
 const Restaurant = require('./models/restaurant')
-// 引用 body-parser
 const bodyParser = require('body-parser')
-// 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
-app.use(bodyParser.urlencoded({ extended: true }))
+// 載入 method-override
+const methodOverride = require('method-override')
+const port = 3000
 
-
+mongoose.connect('mongodb://localhost/restaurant-list', { useNewUrlParser: true, useUnifiedTopology: true })
 
 //資料庫連線狀態
 const db = mongoose.connection
@@ -22,12 +21,14 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
+// 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
+app.use(bodyParser.urlencoded({ extended: true }))
+// 設定每一筆請求都會透過 methodOverride 進行前置處理
+app.use(methodOverride('_method'))
 
 
 
 
-// require express-handlebars here
-const exphbs = require('express-handlebars')
 
 
 // 設定模板引擎
@@ -51,7 +52,7 @@ app.get('/restaurants/new', (req, res) => {
   return res.render('new')
 })
 
-app.post('/restaurants', (req, res) => {
+app.post('/restaurants/:id', (req, res) => {
   const name = req.body.name
   const category = req.body.category
   const image = req.body.image
@@ -95,7 +96,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 
 
 
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const name = req.body.name
   const category = req.body.category
@@ -141,7 +142,7 @@ app.get('/search', (req, res) => {
 })
 
 //刪除餐廳
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
