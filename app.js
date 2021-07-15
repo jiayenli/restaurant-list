@@ -6,6 +6,8 @@ const Restaurant = require('./models/restaurant')
 const bodyParser = require('body-parser')
 // 載入 method-override
 const methodOverride = require('method-override')
+// 引用路由器
+const routes = require('./routes')
 const port = 3000
 
 mongoose.connect('mongodb://localhost/restaurant-list', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -25,6 +27,8 @@ db.once('open', () => {
 app.use(bodyParser.urlencoded({ extended: true }))
 // 設定每一筆請求都會透過 methodOverride 進行前置處理
 app.use(methodOverride('_method'))
+// 將 request 導入路由器
+app.use(routes)
 
 
 
@@ -38,117 +42,10 @@ app.set('view engine', 'handlebars')
 // 設定靜態檔案的位置
 app.use(express.static('public'))
 
-// 設定路由
-app.get('/', (req, res) => {
-  Restaurant.find()
-    .lean()
-    .then(restaurant => res.render('index', { restaurant }))
-    .catch(error => console.error(error))
-
-})
-
-//新增餐廳
-app.get('/restaurants/new', (req, res) => {
-  return res.render('new')
-})
-
-app.post('/restaurants/:id', (req, res) => {
-  const name = req.body.name
-  const category = req.body.category
-  const image = req.body.image
-  const location = req.body.location
-  const phone = req.body.phone
-  const google_map = req.body.google_map
-  const rating = req.body.rating
-  const description = req.body.description
-
-  console.log(name)
-
-  return Restaurant.create({ name, category, image, location, phone, google_map, rating, description })
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
-})
-
-
-
-//瀏覽一筆資料
-app.get('/restaurants/:id', (req, res) => {
-  const id = req.params.id
-  return Restaurant.findById(id)
-    .lean()
-    .then((restaurant) => res.render('show', { restaurant }))
-    .catch(error => console.log(error))
-})
 
 
 
 
-
-//修改資料
-app.get('/restaurants/:id/edit', (req, res) => {
-  const id = req.params.id
-  return Restaurant.findById(id)
-    .lean()
-    .then((restaurant) => res.render('edit', { restaurant }))
-    .catch(error => console.log(error))
-})
-
-
-
-
-app.put('/restaurants/:id', (req, res) => {
-  const id = req.params.id
-  const name = req.body.name
-  const category = req.body.category
-  const image = req.body.image
-  const location = req.body.location
-  const phone = req.body.phone
-  const google_map = req.body.google_map
-  const rating = req.body.rating
-  const description = req.body.description
-  return Restaurant.findById(id)
-    .then(restaurant => {
-      restaurant.name = name
-      restaurant.category = category
-      restaurant.image = image
-      restaurant.location = location
-      restaurant.phone = phone
-      restaurant.google_map = google_map
-      restaurant.rating = rating
-      restaurant.description = description
-     
-      return restaurant.save()
-    })
-    .then(() => res.redirect(`/restaurants/${id}`))
-    .catch(error => console.log(error))
-})
-
-
-
-
-//搜尋餐廳
-app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
-  Restaurant.find()
-    .lean()
-    .then(restaurant => {
-      restaurant = restaurant.filter(restaurant => {
-        return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
-      })
-      res.render('index', { restaurant, keyword })
-    })
-  
-    .catch(error => console.log(error))
-})
-
-//刪除餐廳
-app.delete('/restaurants/:id', (req, res) => {
-  const id = req.params.id
-  return Restaurant.findById(id)
-    .then(restaurant => restaurant.remove())
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
-})
 
 app.listen(port, () => {
   console.log(`Express is listening on localhost:${port}`)
