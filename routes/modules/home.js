@@ -8,10 +8,9 @@ router.get('/', (req, res) => {
     .lean()
     .then(restaurant => res.render('index', { restaurant }))
     .catch(error => console.error(error))
-
 })
 
-//搜尋餐廳
+// 搜尋餐廳
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword
   Restaurant.find()
@@ -25,6 +24,22 @@ router.get('/search', (req, res) => {
     .catch(error => console.log(error))
 })
 
-
+// 篩選餐廳
+router.post('/', (req, res) => {
+  let keyword = req.body.sort
+  let order = ''
+  if (keyword.includes('reverse')) {
+    order = 'desc'
+    keyword = keyword.split('reverse')[0]
+  } else {
+    order = 'asc'
+  }
+ 
+  Restaurant.find()
+    .lean()
+    .sort({ [keyword]: [order]})
+    .then(restaurant => res.render('index', { restaurant }))
+    .catch(error => console.error(error))
+})
 // 匯出路由模組
 module.exports = router

@@ -53,6 +53,14 @@ header {
   color: white;
   padding: 5px;
 }
+
+.sort {
+  background-color: #9b4b4b;
+  border-radius: 5px;
+  color: white;
+  padding: 0 5px;
+  margin-right: 3px;
+}
 .btn-major {
   background-color: #9b4b4b;
   color: white;

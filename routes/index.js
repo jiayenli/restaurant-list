@@ -2,7 +2,7 @@
 const express = require('express')
 const router = express.Router()
 // 準備引入路由模組
-const home  = require('./modules/home')
+const home = require('./modules/home')
 router.use('/', home)
 const restaurants = require('./modules/restaurants')
 router.use('/restaurants', restaurants)
