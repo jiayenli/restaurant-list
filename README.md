@@ -19,6 +19,8 @@
 6、使用者可刪除餐廳
 ![image](https://user-images.githubusercontent.com/86180743/125239877-e32e0c00-e31b-11eb-82cb-d754c29ea4f9.png)
 
+7、使用這可依需求排序餐廳列表
+
 ## 使用工具
 環境：Visual Studio Code、Node.js
 
